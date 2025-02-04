@@ -18,7 +18,7 @@ def saludo(nombre):
 #2.2
 @app.route('/suma/<int:num1>/<int:num2>')
 def suma(num1, num2):
-    return str(num1 + num2)
+    return f"la suma de {num1} + {num2} es {num1 + num2}"
 
 #2.3
 @app.route('/consulta/<string:palabra>')
