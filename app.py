@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,request,make_response
 
 
 #Ejercicio 1
@@ -24,6 +24,21 @@ def suma(num1, num2):
 @app.route('/consulta/<string:palabra>')
 def consulta(palabra):
     return palabra.upper()
+
+@app.route('/info')
+def info():
+    navegador = request.headers.get('User-Agent', 'Desconocido')
+    es_seguro = "Sí" if request.is_secure else "No"
+    return {
+        "Navegador": navegador,
+        "Conexión segura": es_seguro
+    }
+
+@app.route('/personalizado')
+def personalizado():
+    response = make_response("<h1>Bienvenido</h1>", 201)
+    response.set_cookie("mi_cookie", "valor_demo")
+    return response
 
 
 if __name__ == '__main__':
