@@ -1,4 +1,4 @@
-from flask import Flask,request,make_response
+from flask import Flask,request,make_response,jsonify
 
 
 #Ejercicio 1
@@ -29,10 +29,10 @@ def consulta(palabra):
 def info():
     navegador = request.headers.get('User-Agent', 'Desconocido')
     es_seguro = "Sí" if request.is_secure else "No"
-    return {
+    return jsonify({
         "Navegador": navegador,
         "Conexión segura": es_seguro
-    }
+    })
 
 @app.route('/personalizado')
 def personalizado():
